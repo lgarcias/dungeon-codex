@@ -1,0 +1,20 @@
+{
+  "name": "Dungeon Codex DevContainer",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.envFile": "${workspaceFolder}/.env"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ckolkman.vscode-postgres",
+        "geequlim.godot-tools"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.env.*
+
+# Alembic
+backend/migrations/__pycache__/
+backend/migrations/versions/*.pyc
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# DevContainer
+.devcontainer/**/__pycache__/
+
+# Docker
+pgdata/
+*.log
+
+# Godot
+*.import/
+export.cfg
+export_presets.cfg
+.godot/

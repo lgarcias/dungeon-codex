@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - .:/workspace:cached
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    command: sleep infinity # Keep the container running
+    ports:
+      - "8000:8000" # Expose the backend service on port 8000
+    user: "${UID}:${GID}"
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
