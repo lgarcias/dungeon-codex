@@ -16,5 +16,6 @@
         "geequlim.godot-tools"
       ]
     }
-  }
+  },
+  "postCreateCommand": "bash scripts/post_create.sh"
 }

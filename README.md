@@ -1,27 +1,27 @@
 # Dungeon Codex
 
-Dungeon Codex is a game project that combines a Python-based backend (FastAPI + SQLAlchemy + Alembic + PostgreSQL) with a Godot-based frontend, fully containerized using Docker and developed within a DevContainer-compatible environment.
+Dungeon Codex is a game project that combines a Python-based backend (FastAPI + SQLAlchemy + PostgreSQL) with a Godot-based frontend, fully containerized using Docker and developed within a DevContainer-compatible environment.
 
 ---
 
 ## 🚀 Features
 
-- Backend API built with FastAPI
-- Database powered by PostgreSQL
-- Database migrations managed with Alembic
-- Frontend built with Godot Engine
-- Development environment configured with DevContainers and Docker Compose
-- VS Code tasks and workspace integration
+- Backend API built with FastAPI  
+- Database powered by PostgreSQL  
+- Manual database migrations via SQL scripts  
+- Frontend built with Godot Engine  
+- Development environment configured with DevContainers and Docker Compose  
+- VS Code tasks and workspace integration  
 - Testing environment and Makefile-based task automation
 
 ---
 
 ## ⚙️ Requirements
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-- [Visual Studio Code](https://code.visualstudio.com/)
-  - Dev Container extension
+- [Docker](https://www.docker.com/)  
+- [Docker Compose](https://docs.docker.com/compose/)  
+- [Visual Studio Code](https://code.visualstudio.com/)  
+  - Dev Container extension  
 - [Git](https://git-scm.com/)
 
 ---
@@ -71,7 +71,7 @@ Once inside the container, run:
 make dev
 ```
 
-This will apply migrations and start the FastAPI backend with live reload.
+This will apply migrations from SQL scripts and start the FastAPI backend with live reload.
 
 The API will be available at:  
 [http://localhost:8000](http://localhost:8000)  
@@ -87,8 +87,7 @@ Open the `frontend` folder using the Godot editor inside or outside the containe
 
 ```bash
 make dev         # Start the backend
-make revision    # Generate a new alembic migration
-make migrate     # Apply migrations
+make migrate     # Apply SQL migrations
 make reset-db    # Drop and recreate the database
 make test        # Run the backend tests
 ```
@@ -110,15 +109,14 @@ Make sure your test database is configured in `.env`.
 ```
 dungeon-codex/
 ├── backend/
-│   ├── app/             # FastAPI app modules
-│   ├── migrations/      # Alembic migrations
-│   ├── scripts/         # CLI utilities or helpers
-│   ├── tests/           # Unit and integration tests
-│   ├── alembic.ini
+│   ├── app/               # FastAPI app modules
+│   ├── sql_migrations/    # Manual SQL migration scripts
+│   ├── apply_migrations.py# Migration runner script
+│   ├── tests/             # Unit and integration tests
 │   └── requirements.txt
-├── frontend/            # Godot project files
-├── .devcontainer/       # DevContainer setup
-├── .vscode/             # VS Code tasks and workspace settings
+├── frontend/              # Godot project files
+├── .devcontainer/         # DevContainer setup
+├── .vscode/               # VS Code tasks and workspace settings
 ├── docker-compose.yml
 └── Makefile
 ```
@@ -127,12 +125,12 @@ dungeon-codex/
 
 ## 📦 Development Tips
 
-- Use VS Code tasks (`Ctrl+Shift+P → Run Task`) for quick actions.
-- Use `make` commands to manage common operations.
+- Use VS Code tasks (`Ctrl+Shift+P → Run Task`) for quick actions.  
+- Use `make` commands to manage common operations.  
 - Monitor logs and backend behavior using live terminal output (`make dev` or task).
 
 ---
 
 ## 📜 License
 
-MIT License (or specify your license here)
+MIT License

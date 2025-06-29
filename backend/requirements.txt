@@ -1,7 +1,7 @@
-fastapi
-uvicorn[standard]
 asyncpg
-sqlalchemy
+fastapi
 pydantic
-alembic
+psycopg2-binary
 python-dotenv
+sqlalchemy
+uvicorn[standard]

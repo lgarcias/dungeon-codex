@@ -4,13 +4,9 @@
 dev:
 	bash backend/start.sh
 
-# Crear una nueva migración automática
-revision:
-	cd backend && alembic revision --autogenerate -m "auto"
-
-# Aplicar migraciones
+# Crear una nueva revisión de migración
 migrate:
-	cd backend && alembic upgrade head
+	cd backend && python apply_migrations.py
 
 # Eliminar y recrear la base de datos
 reset-db:
