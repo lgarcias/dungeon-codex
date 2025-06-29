@@ -104,6 +104,23 @@ Make sure your test database is configured in `.env`.
 
 ---
 
+## ንድ Game Design
+
+The core design documents for Dungeon Codex can be found in the `/docs/design` directory. These documents outline the game's concept, mechanics, and technical specifications.
+
+-   [Game Concept](./docs/design/01_GAME_CONCEPT.md)
+-   [Core Mechanics](./docs/design/02_CORE_MECHANICS.md)
+-   [MVP Specification](./docs/design/03_MVP_SPECIFICATION.md)
+-   [Technical Design](./docs/design/04_TECHNICAL_DESIGN.md)
+
+## 🗺️ Development Roadmap
+
+The development plan for the MVP is detailed in the following document:
+
+-   [MVP Task List](./docs/development/MVP_TASK_LIST.md)
+
+---
+
 ## 🗂 Project Structure (Summary)
 
 ```
@@ -114,6 +131,9 @@ dungeon-codex/
 │   ├── apply_migrations.py# Migration runner script
 │   ├── tests/             # Unit and integration tests
 │   └── requirements.txt
+├── docs/
+│   ├── design/            # Game design documents
+│   └── development/       # Development plans and tasks
 ├── frontend/              # Godot project files
 ├── .devcontainer/         # DevContainer setup
 ├── .vscode/               # VS Code tasks and workspace settings
