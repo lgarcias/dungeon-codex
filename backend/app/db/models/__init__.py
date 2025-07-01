@@ -1,4 +1,7 @@
-from .player import Player
-from sqlalchemy.orm import declarative_base
+from .user import User
+# Import other models here as they are created
+# from .item import Item
 
-Base = Player.__bases__[0]  # Usamos la misma Base de player
+from app.db.base import Base
+
+__all__ = ["User", "Base"]
