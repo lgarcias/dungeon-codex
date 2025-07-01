@@ -6,18 +6,18 @@ This document outlines the development tasks required to build the Minimum Viabl
 
 ### 1.1. Database Models
 
--   [ ] **Task 1.1.1:** Implement the `User` model in `backend/app/db/models/user.py`.
--   [ ] **Task 1.1.2:** Implement the `Profession` model in `backend/app/db/models/profession.py`.
--   [ ] **Task 1.1.3:** Implement the `Character` model in `backend/app/db/models/character.py`.
--   [ ] **Task 1.1.4:** Implement the `DungeonRun` model in `backend/app/db/models/dungeon_run.py`.
--   [ ] **Task 1.1.5:** Create an initial SQL migration script in `backend/sql_migrations/` to create all the tables.
+-   [x] **Task 1.1.1:** Implement the `User` model in `backend/app/db/models/user.py`.
+-   [x] **Task 1.1.2:** Implement the `Profession` model in `backend/app/db/models/profession.py`.
+-   [x] **Task 1.1.3:** Implement the `Character` model in `backend/app/db/models/character.py`.
+-   [x] **Task 1.1.4:** Implement the `DungeonRun` model in `backend/app/db/models/dungeon_run.py`.
+-   [x] **Task 1.1.5:** Create an initial SQL migration script in `backend/sql_migrations/` to create all the tables.
 
 ### 1.2. API Schemas (Pydantic)
 
--   [ ] **Task 1.2.1:** Create Pydantic schemas for `User` (create, read) in `backend/app/schemas/user.py`.
--   [ ] **Task 1.2.2:** Create Pydantic schemas for `Profession` in `backend/app/schemas/profession.py`.
--   [ ] **Task 1.2.3:** Create Pydantic schemas for `Character` (create, read) in `backend/app/schemas/character.py`.
--   [ ] **Task 1.2.4:** Create Pydantic schemas for `DungeonRun` in `backend/app/schemas/dungeon_run.py`.
+-   [x] **Task 1.2.1:** Create Pydantic schemas for `User` (create, read) in `backend/app/schemas/user.py`.
+-   [x] **Task 1.2.2:** Create Pydantic schemas for `Profession` in `backend/app/schemas/profession.py`.
+-   [x] **Task 1.2.3:** Create Pydantic schemas for `Character` (create, read) in `backend/app/schemas/character.py`.
+-   [x] **Task 1.2.4:** Create Pydantic schemas for `DungeonRun` in `backend/app/schemas/dungeon_run.py`.
 
 ### 1.3. API Endpoints & Logic
 
