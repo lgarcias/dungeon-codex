@@ -7,7 +7,7 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str
 
-class UserRead(BaseModel):
+class User(BaseModel):
     id: uuid.UUID
     username: str
     email: EmailStr
@@ -15,4 +15,3 @@ class UserRead(BaseModel):
 
     class Config:
         orm_mode = True
-

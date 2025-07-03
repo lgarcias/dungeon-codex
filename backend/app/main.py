@@ -1,14 +1,9 @@
 from fastapi import FastAPI
-from app.api.routes import users, dungeon, characters, professions, auth
+from app.api.v1.api import api_router
 
 app = FastAPI()
 
-# Register routers
-app.include_router(users.router)
-app.include_router(dungeon.router, prefix="/dungeon", tags=["Dungeon"])
-app.include_router(characters.router, prefix="/characters", tags=["Characters"])
-app.include_router(professions.router, prefix="/professions", tags=["Professions"])
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():

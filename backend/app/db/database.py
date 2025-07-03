@@ -1,31 +1,15 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
+from typing import AsyncGenerator
 
-from app.core.config import settings
+from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
+                                    create_async_engine)
 
-# Synchronous database URL for Alembic migrations
-def get_sync_database_url():
-    """
-    Returns the synchronous database URL.
-    Useful for tools like Alembic that might not work with async drivers.
-    The print statement is kept for debugging purposes during migrations.
-    """
-    print(f"🔍 Full DB URL: {settings.SYNC_DATABASE_URL}")
-    return settings.SYNC_DATABASE_URL
-    
+from app.core.config import get_settings
 
-# Crear el engine
+settings = get_settings()
+
 engine = create_async_engine(settings.ASYNC_DATABASE_URL, echo=settings.DB_ECHO)
+AsyncSessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Crear el sessionmaker
-async_session = sessionmaker(   
-    bind=engine,
-    class_=AsyncSession,
-    expire_on_commit=False,
-)
-
-# Dependency para usar en los endpoints
-async def get_db():
-    async with async_session() as session:
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    async with AsyncSessionLocal() as session:
         yield session
-

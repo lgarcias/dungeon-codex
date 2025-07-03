@@ -1,60 +1,79 @@
-# 3. MVP Specification
+# MVP Specification
 
-This document defines the precise scope of the Minimum Viable Product (MVP) for Dungeon Codex.
+This document outlines the Minimum Viable Product (MVP) for the Dungeon Codex project.
 
-## 3.1. MVP Goal
+## 1. Core Loop
 
-To deliver a functional prototype that validates the core gameplay loop (exploration, combat, progression) on Android and Web platforms. The experience should be fun and demonstrate the game's potential.
+The core gameplay loop consists of:
+1.  Creating a character.
+2.  Choosing a profession.
+3.  Running a dungeon.
+4.  Viewing results.
 
-## 3.2. Included Features
+## 2. Key Features
 
-### Character
+-   User registration and login.
+-   Character creation and management.
+-   A selection of starting professions.
+-   A single, repeatable dungeon experience.
+-   Score tracking for dungeon runs.
 
--   **Creation:** Players can create a character with a name.
--   **Classes:** Two playable classes:
-    -   **Alchemist**
-    -   **Warrior**
--   Each class will have 1 unique passive ability and 1 unique active ability.
+## 3. API Endpoints (High-Level)
 
-### Dungeon & Exploration
+-   `POST /auth/register`: Create a new user.
+-   `POST /auth/login`: Authenticate and get a token.
+-   `GET /professions`: List available professions.
+-   `POST /characters`: Create a new character.
+-   `GET /characters`: List user's characters.
+-   `POST /dungeon/end`: Record the result of a dungeon run.
 
--   **Procedural Generation:** Dungeons are procedurally generated as a grid of connected rooms.
--   **Top-Down View:** Exploration is from a top-down perspective.
--   **Tile-Based Movement:** The player moves one tile at a time.
--   **Room Events:** The following events are included:
-    -   Combat with a random basic enemy.
-    -   A treasure chest with a random reward.
-    -   A healing altar (guaranteed to appear once per dungeon run).
+## 4. Data Models
 
-### Combat
+The core data models for the MVP are defined as follows, corresponding to the database tables.
 
--   **Turn-Based:** Combat is turn-based on a grid.
--   **Player Actions:** Move, Attack, Use one active ability.
--   **Enemies:** 1-2 basic enemy types with simple AI (move and attack).
+### 4.1. Users
 
-### Progression
+Stores user account information for authentication and linking to characters.
 
--   **Persistence:** Character progress (stats, collected materials) is saved only at the end of a dungeon run.
--   **Summary Screen:** A screen at the end of the run shows a summary of materials gathered.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `id` | `UUID` | Primary key, unique user identifier. |
+| `email` | `VARCHAR` | Unique email for login. |
+| `password_hash`| `VARCHAR` | Hashed user password. |
+| `created_at` | `TIMESTAMPTZ` | Timestamp of user creation. |
 
-## 3.3. Technical Requirements
+### 4.2. Professions
 
--   **Backend:** FastAPI with a PostgreSQL database.
--   **Frontend:** Godot 4.2+.
--   **Platforms:**
-    -   Android (Native App)
-    -   HTML5 (Web Browser)
--   **API:** A REST API for communication between the frontend and backend to manage character data and progress.
+Defines the available character classes in the game, seeded with initial data.
 
-## 3.4. Exclusions for MVP
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `id` | `SERIAL` | Primary key, unique profession identifier. |
+| `name` | `VARCHAR` | Unique name of the profession (e.g., "Warrior"). |
+| `description` | `TEXT` | A brief description of the profession. |
+| `base_stats` | `JSONB` | Base statistics (HP, mana, damage, etc.). |
+| `base_inventory` | `JSONB` | Starting items for the profession. |
 
-The following features are explicitly **out of scope** for the MVP:
+### 4.3. Characters
 
--   Card crafting or any card-based mechanics.
--   Laboratory/Workshop area.
--   Hero companions.
--   Advanced combat mechanics (e.g., complex status effects, multiple abilities).
--   Blockchain integration.
--   Multiple dungeon types or biomes.
--   Story or narrative events.
--   Sound and music.
+Represents a player's character, linked to a user and a profession.
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `id` | `SERIAL` | Primary key, unique character identifier. |
+| `name` | `VARCHAR` | The character's name. |
+| `level` | `INTEGER` | The character's current level. |
+| `user_id` | `UUID` | Foreign key linking to the `users` table. |
+| `profession_id` | `INTEGER` | Foreign key linking to the `professions` table. |
+
+### 4.4. Dungeon Runs
+
+Records the outcome of each dungeon attempt by a character.
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `id` | `SERIAL` | Primary key, unique run identifier. |
+| `score` | `INTEGER` | Score achieved during the run. |
+| `completed_at` | `TIMESTAMPTZ` | Timestamp when the run finished. |
+| `is_successful`| `BOOLEAN` | Whether the character successfully cleared the dungeon. |
+| `character_id` | `INTEGER` | Foreign key linking to the `characters` table. |
