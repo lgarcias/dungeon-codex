@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Text
 from sqlalchemy.dialects.postgresql import JSONB
-from .base import Base
+from app.db.base import Base
 
 class Profession(Base):
     __tablename__ = 'professions'

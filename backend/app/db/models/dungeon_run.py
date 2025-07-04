@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey, DateTime, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from .base import Base
+from app.db.base import Base
 
 class DungeonRun(Base):
     __tablename__ = 'dungeon_runs'
