@@ -43,8 +43,8 @@ Create a `.env` file in the root directory:
 POSTGRES_HOST=host.docker.internal
 POSTGRES_DB=dungeon_codex_dev
 POSTGRES_DB_TEST=dungeon_codex_test
-POSTGRES_USER=dungeon
-POSTGRES_PASSWORD=yourpassword
+POSTGRES_USER=xxxx
+POSTGRES_PASSWORD=xxxx
 POSTGRES_PORT=5432
 UID=1000
 GID=1000
